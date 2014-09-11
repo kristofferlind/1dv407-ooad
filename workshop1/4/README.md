@@ -1,5 +1,4 @@
-#Workshop 1 - betyg 3
+#Workshop 1 - betyg 4
 ##Gruppmedlemmar
-* Anton K Andersson - aa223ap
 * Hannes Ljusås - hl222ih
 * Kristoffer Lind - kl222jy
