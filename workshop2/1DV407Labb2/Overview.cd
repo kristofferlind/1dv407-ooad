@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_1DV407Labb2.Controller.MemberController">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAQAAAACAAQABwAAAIAACAAECAAAAKACAAAAgAAAQ=</HashCode>
+      <FileName>Controller\MemberController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="boatManager" />
+      <Field Name="boatView" />
+      <Field Name="memberRegister" />
+      <Field Name="memberView" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="_1DV407Labb2.Model.Boat" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAEABA=</HashCode>
+      <FileName>Model\Boat.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BoatType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="_1DV407Labb2.Model.BoatManager" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAQAAAAAIAEAAAAAgQAAAAAAAAAkAAAAAAA=</HashCode>
+      <FileName>Model\BoatManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Boats" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="_1DV407Labb2.Model.Member" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAABAAAACAIAAAAAQAgAAEAACAAAAAAAAAAhA=</HashCode>
+      <FileName>Model\Member.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="BoatManager" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="_1DV407Labb2.Model.MemberRegister">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQEAABkAAQAAIAAIOAAQAEAEAAAKAGEgAAAAA=</HashCode>
+      <FileName>Model\MemberRegister.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Members" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="_1DV407Labb2.Model.Utils">
+    <Position X="13.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Model\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV407Labb2.View.BoatView">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\BoatView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV407Labb2.View.BaseView">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAEAAAAAAAAQCAAAAAgAAAAAAAA=</HashCode>
+      <FileName>View\BaseView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_1DV407Labb2.View.MemberView">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgADAQAAQYAAQAA=</HashCode>
+      <FileName>View\MemberView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="memberRegister" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="_1DV407Labb2.Program">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="_1DV407Labb2.Model.BoatType">
+    <Position X="13.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgCAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\BoatType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

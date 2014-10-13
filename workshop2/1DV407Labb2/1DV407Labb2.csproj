@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1CCB0F1-AAEE-49D4-8912-F56FB1636949}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_1DV407Labb2</RootNamespace>
+    <AssemblyName>1DV407Labb2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\MemberController.cs" />
+    <Compile Include="Model\Boat.cs" />
+    <Compile Include="Model\BoatManager.cs" />
+    <Compile Include="Model\BoatType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Member.cs" />
+    <Compile Include="Model\MemberRegister.cs" />
+    <Compile Include="Model\Utils.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\BaseView.cs" />
+    <Compile Include="View\BoatView.cs" />
+    <Compile Include="View\MemberView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="MemberController_HandleAddBoat.sequencediagram" />
+    <None Include="MemberController_HandleAddMember.sequencediagram" />
+    <None Include="MemberController_HandleAuthentication.sequencediagram" />
+    <None Include="MemberController_HandleBoat.sequencediagram" />
+    <None Include="MemberController_HandleBoats.sequencediagram" />
+    <None Include="MemberController_HandleEditBoat.sequencediagram" />
+    <None Include="MemberController_HandleEditMember.sequencediagram" />
+    <None Include="MemberController_HandleMember.sequencediagram" />
+    <None Include="MemberController_HandleMemberList.sequencediagram" />
+    <None Include="MemberController_HandleRemoveBoat.sequencediagram" />
+    <None Include="MemberController_HandleRemoveMember.sequencediagram" />
+    <None Include="Overview.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kladd\TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MemberController_HandleAddBoat.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAddBoat.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleAddMember.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAddMember.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleAuthentication.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAuthentication.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleBoat.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleBoat.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleBoats.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleBoats.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleEditBoat.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleEditBoat.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleEditMember.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleEditMember.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleMember.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleMember.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleMemberList.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleMemberList.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleRemoveBoat.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleRemoveBoat.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberController_HandleRemoveMember.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleRemoveMember.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
