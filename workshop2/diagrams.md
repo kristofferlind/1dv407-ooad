@@ -19,7 +19,7 @@ _Snippets for [yuml.me](https://yuml.me)_
 ##Sequence diagrams
 All sequence diagrams are in code for [websequencediagrams.com](https://www.websequencediagrams.com/).
 
-Every diagram has an initiator from MemberView/BoatView, this request actually comes from the controller because it's a console app, but is shown as coming from the view to structure the diagram. These diagrams has been stripped. For full details, check generated diagrams in the solution folder.
+Every diagram has an initiator from `MemberView/BoatView`, this request actually comes from the controller because it's a console app. In the diagram it is however shown as coming from the view. This is because it improves the readability of the diagram. These diagrams has been stripped. For full details, check generated diagrams in the solution.
 
 ##Persistence
 Data is saved on change.
