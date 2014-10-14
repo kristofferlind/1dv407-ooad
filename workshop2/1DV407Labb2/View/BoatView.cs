@@ -37,9 +37,6 @@ namespace _1DV407Labb2.View
 
         public void DisplayBoatMenu(Member member, Boat boat)
         {
-            //var boats = member.GetBoatList();
-            //var boat = member.GetBoat(boatIndex);
-
             Console.Clear();
             Console.WriteLine("╔════════════════════════════════════════════════════════════════╗");
             Console.WriteLine("║ █▓▒░              BOAT MEMBERSHIP - BOAT                  ░▒▓█ ║");

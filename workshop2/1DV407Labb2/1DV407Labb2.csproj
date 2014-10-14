@@ -58,55 +58,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MemberController_HandleAddBoat.sequencediagram" />
-    <None Include="MemberController_HandleAddMember.sequencediagram" />
-    <None Include="MemberController_HandleAuthentication.sequencediagram" />
-    <None Include="MemberController_HandleBoat.sequencediagram" />
-    <None Include="MemberController_HandleBoats.sequencediagram" />
-    <None Include="MemberController_HandleEditBoat.sequencediagram" />
-    <None Include="MemberController_HandleEditMember.sequencediagram" />
+    <None Include="MemberController_HandleAddBoat_1.sequencediagram" />
+    <None Include="MemberController_HandleAddMember_1.sequencediagram" />
+    <None Include="MemberController_HandleAuthentication_1.sequencediagram" />
+    <None Include="MemberController_HandleBoat_1.sequencediagram" />
+    <None Include="MemberController_HandleEditBoat_1.sequencediagram" />
+    <None Include="MemberController_HandleEditMember_1.sequencediagram" />
     <None Include="MemberController_HandleMember.sequencediagram" />
-    <None Include="MemberController_HandleMemberList.sequencediagram" />
-    <None Include="MemberController_HandleRemoveBoat.sequencediagram" />
-    <None Include="MemberController_HandleRemoveMember.sequencediagram" />
+    <None Include="MemberController_HandleMemberList_1.sequencediagram" />
+    <None Include="MemberController_HandleRemoveBoat_1.sequencediagram" />
+    <None Include="MemberController_HandleRemoveMember_1.sequencediagram" />
     <None Include="Overview.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Kladd\TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MemberController_HandleAddBoat.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleAddBoat.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleAddBoat_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAddBoat_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleAddMember.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleAddMember.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleAddMember_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAddMember_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleAuthentication.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleAuthentication.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleAuthentication_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleAuthentication_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleBoat.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleBoat.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleBoat_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleBoat_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleBoats.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleBoats.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleEditBoat_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleEditBoat_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleEditBoat.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleEditBoat.sequencediagram</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleEditMember.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleEditMember.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleEditMember_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleEditMember_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MemberController_HandleMember.sequencediagram.layout">
       <DependentUpon>MemberController_HandleMember.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleMemberList.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleMemberList.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleMemberList_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleMemberList_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleRemoveBoat.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleRemoveBoat.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleRemoveBoat_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleRemoveBoat_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemberController_HandleRemoveMember.sequencediagram.layout">
-      <DependentUpon>MemberController_HandleRemoveMember.sequencediagram</DependentUpon>
+    <EmbeddedResource Include="MemberController_HandleRemoveMember_1.sequencediagram.layout">
+      <DependentUpon>MemberController_HandleRemoveMember_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

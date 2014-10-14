@@ -11,18 +11,19 @@ namespace _1DV407Labb2.Controller
     class MemberController
     {
         private MemberRegister memberRegister;
-        private MemberView memberView;
-        private BoatView boatView;
         private BoatManager boatManager;
 
-        internal MemberController()
+        private MemberView memberView;
+        private BoatView boatView;
+
+        public MemberController()
         {
             memberRegister = new MemberRegister();
             memberView = new MemberView(memberRegister);
             boatView = new BoatView();
         }
 
-        internal void Start()
+        public void Start()
         {
             memberRegister.LoadMembers();
 
@@ -31,13 +32,7 @@ namespace _1DV407Labb2.Controller
             {
                 memberView.DisplayMenu();
 
-                if (memberRegister.IsLoggedIn) {
-                    input = memberView.GetIntegerInput(4, "Make your selection");
-                }
-                else
-                {
-                    input = memberView.GetIntegerInput(3, "Make your selection");
-                }
+                input = memberView.GetIntegerInput(3, "Make your selection");
 
 
                 switch (input)
@@ -58,8 +53,7 @@ namespace _1DV407Labb2.Controller
                             HandleAuthentication();
                         }
                         break;
-                    case 4:
-                        memberRegister.SaveMembers();
+                    default:
                         break;
                 }
             } while (input != 0);
@@ -75,11 +69,12 @@ namespace _1DV407Labb2.Controller
         private void HandleAddMember()
         {
             var inputName = memberView.GetStringInput(100, "Enter member name", 3);
-            var inputSocialSecurityNumber = memberView.GetStringInput(11, "Enter social security number (YYMMDD-XXXX or XXX-XX-XXXX)", 10);
+            var inputSocialSecurityNumber = memberView.GetStringInput(11, "Enter social security number (YYMMDD-XXXX or XXX-XX-XXXX)", 9, @"^(?:\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\d|3[0-1])\-?\d{4}|\d{3}\-?\d{2}\-?\d{4})$");
             var savedMember = memberRegister.AddMember(inputName, inputSocialSecurityNumber);
+            boatManager = memberRegister.GetBoatManager(savedMember);
             HandleMember(savedMember);
         }
-
+        
         private void HandleMemberList(bool showDetailed)
         {
             memberView.DisplayMemberList(showDetailed);
@@ -117,12 +112,14 @@ namespace _1DV407Labb2.Controller
                     {
                         case 1:
                             HandleAddBoat(member);
+                            member = memberRegister.GetMemberInfo(member.Id);
                             break;
                         case 2:
                             HandleBoats(member);
                             break;
                         case 3:
                             HandleEditMember(member);
+                            member = memberRegister.GetMemberInfo(member.Id);
                             break;
                         case 4:
                             HandleRemoveMember(member);
@@ -149,40 +146,50 @@ namespace _1DV407Labb2.Controller
         {
             var newName = member.Name;
             var newSocialSecurityNumber = member.SocialSecurityNumber;
+            //pressing <ENTER> keeps previous name.
             var name = memberView.GetStringInput(100, "Current name: " + member.Name + ", new name", 0);
-            if (string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
             {
                 newName = name;
             }
-            var ssn = memberView.GetStringInput(11, "Enter social security number", 0);
-            if (string.IsNullOrWhiteSpace(ssn))
+            //pressing <ENTER> keeps previous social security number.
+            var ssn = memberView.GetStringInput(11, "Enter social security number (YYMMDD-XXXX or XXX-XX-XXXX)", 0, @"^(?:\s*|\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\d|3[0-1])\-?\d{4}|\d{3}\-?\d{2}\-?\d{4})$");
+            if (!string.IsNullOrWhiteSpace(ssn))
             {
                 newSocialSecurityNumber = ssn;
             }
-            member.Update(newName, newSocialSecurityNumber);
+            memberRegister.UpdateMember(member, newName, newSocialSecurityNumber);
         }
 
         private void HandleBoats(Member member)
         {
-            var boats = boatManager.GetBoatList();
-            if (boats.Count == 0)
+            int menuInput = 0;
+            do
             {
-                memberView.DisplayNoBoats();
-                ContinueOnKeyPressed();
-                return;
-            }
-            if (boats.Count == 1)
-            {
-                HandleBoat(member, 0);
-                return;
-            }
-            boatView.DisplayBoatsMenu(boats);
-            var menuInput = memberView.GetIntegerInput(boats.Count, "Make your selection");
-            if (menuInput != 0)
-            {
-                HandleBoat(member, menuInput - 1);
-            }
+                var boats = boatManager.GetBoatList();
+                if (boats.Count == 0)
+                {
+                    memberView.DisplayNoBoats();
+                    ContinueOnKeyPressed();
+                    break;
+                }
+                else if (boats.Count == 1)
+                {
+                    HandleBoat(member, 0);
+                    break;
+                }
+                else
+                {
+                    boatView.DisplayBoatsMenu(boats);
+                    menuInput = memberView.GetIntegerInput(boats.Count, "Make your selection");
+                    if (menuInput != 0)
+                    {
+                        HandleBoat(member, menuInput - 1);
+                    }
+                }
+            } while (menuInput != 0);
         }
+
         private static void ContinueOnKeyPressed()
         {
             Console.WriteLine("Press any key to continue.");
@@ -199,7 +206,6 @@ namespace _1DV407Labb2.Controller
                 if (hasBoat)
                 {
                     var boat = boatManager.GetBoat(boatIndex);
-                    //TODO: skicka boat?
                     boatView.DisplayBoatMenu(member, boat);
                     menuInput = memberView.GetIntegerInput(2, "Make your selection");
                     switch (menuInput)
@@ -209,6 +215,7 @@ namespace _1DV407Labb2.Controller
                             break;
                         case 2:
                             HandleRemoveBoat(member, boat);
+                            menuInput = 0;
                             break;
                     }
                 }
@@ -218,6 +225,7 @@ namespace _1DV407Labb2.Controller
                 }
             } while (menuInput != 0);    
         }
+
         private void HandleAddBoat(Member member)
         {
             boatView.DisplayBoatTypeMenu();
@@ -238,7 +246,6 @@ namespace _1DV407Labb2.Controller
 
         private void HandleEditBoat(Member member, Boat boat)
         {
-            //var boat = boatManager.GetBoat(boat);
             boatView.DisplayBoatTypeMenu();
             var inputValue = memberView.GetIntegerInput(5, "Current type: " + boat.BoatType.ToString() + ", new boat type", 0);
             if (inputValue == 0)
@@ -247,8 +254,6 @@ namespace _1DV407Labb2.Controller
             }
             var boatType = (BoatType)(inputValue - 1);
             var boatLength = memberView.GetDoubleInput(100.0, "Current length: " + boat.Length + ", new boat length (meters)", 1.0);
-            //member.UpdateBoat(boatIndex, boatLength, boatType);
-            //boat.Update(boatLength, boatType);
             boatManager.Update(boat, boatLength, boatType);
         }
     }

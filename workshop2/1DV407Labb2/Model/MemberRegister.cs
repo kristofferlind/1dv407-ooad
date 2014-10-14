@@ -9,13 +9,15 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.IO;
 using System.Collections.Specialized;
+using System.ComponentModel;
+
 
 namespace _1DV407Labb2.Model
 {
     [XmlRoot(ElementName = "MemberRegister")]
     public class MemberRegister
     {
-        public ObservableCollection<Member> Members { get; private set; }
+        public BindingList<Member> Members { get; private set; }
         private string password;
         private string username;
         
@@ -38,21 +40,30 @@ namespace _1DV407Labb2.Model
 
         public MemberRegister()
         {
-            Members = new ObservableCollection<Member>();
+            Members = new BindingList<Member>();
 
             filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "memberregister.xml");
 
-            //hard coded for simplicity
+            //hard coded credentials for simplicity
             username = "Admin";
             password = "Password";
         }
 
-        private void InitiateCollectionChangeEventHandler()
+        /// <summary>
+        /// Initiating event listeners for the entire collection
+        /// of deserialized objects all the way down to BoatManager
+        /// for automatic save when changes are made.
+        /// </summary>
+        private void InitiateCollectionChangedEventHandler()
         {
-            Members.CollectionChanged += Members_CollectionChanged;
+            for (int i = 0; i < Members.Count; i++)
+            {
+                Members[i].InitiatePropertyChangedEventHandler();
+            }
+            Members.ListChanged += Members_ListChanged;
         }
 
-        public void Members_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        void Members_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e != null)
             {
@@ -62,8 +73,15 @@ namespace _1DV407Labb2.Model
 
         private int getNewMemberId()
         {
-            int highestMemberId = Members.Max(member => member.Id);
-            highestMemberId += 1;
+            int highestMemberId = 0;
+            
+            if (Members.Count != 0)
+            {
+                highestMemberId = Members.Max(member => member.Id);
+            }
+            
+            highestMemberId++;
+
             return highestMemberId;
         }
 
@@ -76,7 +94,7 @@ namespace _1DV407Labb2.Model
 
         private Member GetMember(int memberId)
         {
-            return Members.Where<Member>(member => member.Id == memberId).Single<Member>();
+            return Members.FirstOrDefault<Member>(member => member.Id == memberId);
         }
 
         public Member GetMemberInfo(int memberId)
@@ -84,8 +102,9 @@ namespace _1DV407Labb2.Model
             return (Member)GetMember(memberId).Clone();
         }
 
-        public void DeleteMember(Member member)
+        public void DeleteMember(Member memberInfo)
         {
+            var member = GetMember(memberInfo.Id);
             Members.Remove(member);
         }
 
@@ -97,37 +116,45 @@ namespace _1DV407Labb2.Model
         public void LoadMembers()
         {
             List<Type> typeList = new List<Type>();
-            typeList.Add(typeof(Member)); //_tror_ jag har en metod som gör detta automatiskt
-            typeList.Add(typeof(MemberRegister)); //vi kan köra såhär o testa att det funkar först
-            typeList.Add(typeof(BoatManager));
-            typeList.Add(typeof(Boat));
+            typeList.AddRange(new Type[] { 
+                typeof(Member), 
+                typeof(MemberRegister),
+                typeof(BoatManager),
+                typeof(Boat)}); 
+            
             if (File.Exists(filePath))
             {
-                var memReg = Utils.XmlDeserialize<MemberRegister>(filePath, typeList.ToArray());
-                Members = memReg.Members;
-                lastMemberId = memReg.LastMemberId;
+                var memberRegister = Utils.XmlDeserialize<MemberRegister>(filePath, typeList.ToArray());
+                Members = memberRegister.Members;
+                lastMemberId = memberRegister.LastMemberId;
             }
-            InitiateCollectionChangeEventHandler();
+
+            InitiateCollectionChangedEventHandler();
         }
 
+        /// <summary>
+        /// All Members and boats saved automatically on any change made.
+        /// </summary>
         public void SaveMembers()
         {
             List<Type> typeList = new List<Type>();
-            typeList.Add(typeof(Member));
-            typeList.Add(typeof(MemberRegister));
-            typeList.Add(typeof(BoatManager));
-            typeList.Add(typeof(Boat));
+            typeList.AddRange(new Type[] { 
+                typeof(Member), 
+                typeof(MemberRegister),
+                typeof(BoatManager),
+                typeof(Boat)});
             Utils.XmlSerialize(filePath, this, typeList.ToArray());
         }
 
         public bool IsMember(int memberId)
         {
-            return GetMember(memberId) != null;            
+            return GetMember(memberId) != null;
         }
 
         public void Authenticate(string username, string password)
         {
-            if (this.username == username && this.password == password) {
+            if (this.username == username && this.password == password)
+            {
                 IsLoggedIn = true;
             }
             else
@@ -136,10 +163,16 @@ namespace _1DV407Labb2.Model
             }
         }
 
-        public BoatManager GetBoatManager(Member member)
+        public BoatManager GetBoatManager(Member memberInfo)
         {
-            var member2 = GetMember(member.Id);
-            return member2.BoatManager;
+            var member = GetMember(memberInfo.Id);
+            return member.BoatManager;
+        }
+
+        public void UpdateMember(Member memberInfo, string name, string ssn)
+        {
+            var member = GetMember(memberInfo.Id);
+            member.Update(name, ssn);
         }
     }
 }

@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Text.RegularExpressions;
 
 namespace _1DV407Labb2.Model
 {
-    public class Member  : ICloneable , INotifyPropertyChanged
+    public class Member : ICloneable, INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,10 +23,6 @@ namespace _1DV407Labb2.Model
             }
         }
 
-        // TODO: Better checks when setting values for:
-        // name
-        // social security number
-        // memberID
         public BoatManager BoatManager;
         private string name;
         private string socialSecurityNumber;
@@ -36,7 +33,7 @@ namespace _1DV407Labb2.Model
             {
                 return id;
             }
-            //TODO: Should be private, but that doesn't work with serializer
+            //Supposed be private, but that doesn't work with serializer
             set
             {
                 id = value;
@@ -49,7 +46,7 @@ namespace _1DV407Labb2.Model
             {
                 return name;
             }
-            //TODO: Should be private, but that doesn't work with serializer
+            //Supposed be private, but that doesn't work with serializer
             set
             {
                 if (!String.IsNullOrWhiteSpace(value))
@@ -59,7 +56,7 @@ namespace _1DV407Labb2.Model
                 }
                 else
                 {
-                    throw new FormatException("Name cannot be empty");
+                    name = "<missing>";
                 }
             }
         }
@@ -70,24 +67,26 @@ namespace _1DV407Labb2.Model
             {
                 return socialSecurityNumber;
             }
-            //TODO: Should be private, but that doesn't work with serializer
+            //Supposed be private, but that doesn't work with serializer
             set
-            {
-                if (!String.IsNullOrWhiteSpace(value))
+            {  
+                var re = new Regex(@"^(?:\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\d|3[0-1])\-?\d{4}|\d{3}\-?\d{2}\-?\d{4})$");
+
+                if (!String.IsNullOrWhiteSpace(value) || re.IsMatch(value))
                 {
                     socialSecurityNumber = value;
                     OnPropertyChanged("SocialSecurityNumber");
                 }
                 else
                 {
-                    throw new FormatException("Social security number must be entered.");
+                    socialSecurityNumber = "<missing>"; 
                 }
 
             }
         }
 
         public Member() 
-            : this("<missing>", "0000000000", 0)
+            : this("<missing>", "", 0)
         {
         }
         public Member(string name, string socialSecurityNumber, int memberId)
@@ -96,6 +95,13 @@ namespace _1DV407Labb2.Model
             Id = memberId;
             Name = name;
             SocialSecurityNumber = socialSecurityNumber;
+
+            BoatManager.PropertyChanged += BoatManager_PropertyChanged;
+        }
+
+        void BoatManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged("BoatManager");
         }
 
         public void Update(string name, string socialSecurityNumber)
@@ -106,8 +112,13 @@ namespace _1DV407Labb2.Model
 
         public object Clone()
         {
-            //TODO tror det behöve en "DEEP clone" här...
             return this.MemberwiseClone();
+        }
+
+        public void InitiatePropertyChangedEventHandler()
+        {
+            BoatManager.InitiateListChangedEventHandler();
+            BoatManager.PropertyChanged += BoatManager_PropertyChanged;
         }
     }
 }

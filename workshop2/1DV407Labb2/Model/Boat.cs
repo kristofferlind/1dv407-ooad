@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace _1DV407Labb2.Model
 {
-    public class Boat : ICloneable
+    public class Boat : ICloneable, INotifyPropertyChanged
     {
-        // TODO: Better checks when setting values
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
 
         private double length;
 
@@ -23,16 +33,19 @@ namespace _1DV407Labb2.Model
                 if (value >= 1.0 || value <= 100.0)
                 {
                     length = value;
+                    OnPropertyChanged("Length");
                 }
                 else
                 {
-                    
+                    length = 0.0; //<missing>
                 }
             }
         }
+
         public Boat() : this(1, BoatType.Other)
         {
         }
+
         public Boat(double length, BoatType type)
         {
             Length = length;

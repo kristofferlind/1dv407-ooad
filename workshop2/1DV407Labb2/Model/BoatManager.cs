@@ -5,13 +5,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 
 namespace _1DV407Labb2.Model
 {
-    //TODO: Changing boats doesn't trigger save
     public class BoatManager : INotifyPropertyChanged
     {
-        //Observablecollection som anropar propertychanged? ^o)
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
@@ -22,31 +21,42 @@ namespace _1DV407Labb2.Model
             }
         }
 
-        //private List<Boat> boats;
-        public List<Boat> Boats { get; private set; }
+        public BindingList<Boat> Boats { get; private set; }
 
         public BoatManager()
         {
-            Boats = new List<Boat>();
+            Boats = new BindingList<Boat>();
+            InitiateListChangedEventHandler();
         }
+
+        public void InitiateListChangedEventHandler()
+        {
+            Boats.ListChanged += Boats_ListChanged;
+        }
+
+        void Boats_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e != null)
+            {
+                OnPropertyChanged("Boats");
+            }
+        }
+
         public void RemoveBoat(Boat boat)
         {
             Boats.Remove(boat);
-            //boats.RemoveAt(index);
-            OnPropertyChanged("Boat");
         }
 
         public int AddBoat(double length, BoatType type)
         {
             var boat = new Boat(length, type);
             Boats.Add(boat);
-            OnPropertyChanged("Boat");
             return Boats.Count - 1;
         }
 
         public ReadOnlyCollection<Boat> GetBoatList()
         {
-            return Boats.AsReadOnly();
+            return Boats.ToList().AsReadOnly();
         }
 
         public bool HasBoat(int boatIndex)
@@ -61,10 +71,8 @@ namespace _1DV407Labb2.Model
 
         public void Update(Boat boatInfo, double length, BoatType type)
         {
-
-            var boat = Boats.Find(b => b == boatInfo);
+            var boat = Boats.FirstOrDefault<Boat>(b => b == boatInfo);
             boat.Update(length, type);
-            OnPropertyChanged("Boat");
         }
     }
 }

@@ -7,17 +7,6 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
-//using System;
-//using System.Globalization; //behövs för att ta reda på vilken vecka en TimeDate tillhör
-//using System.Text.RegularExpressions;
-//using System.IO;
-//using System.Runtime.Serialization;
-//using System.Runtime.Serialization.Formatters.Binary; //behövs för (de)serialisering av data
-//using System.Security;
-//using System.Xml;
-//using System.Xml.Serialization;
-//using System.Collections.Generic;
-
 namespace _1DV407Labb2.Model
 {
     static class Utils
@@ -30,7 +19,6 @@ namespace _1DV407Labb2.Model
             using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
             {
                 serializer.Serialize(fileStream, data);
-                //fileStream.Close();
             }
 
         }

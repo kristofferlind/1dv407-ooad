@@ -77,7 +77,6 @@ namespace _1DV407Labb2.View
                 var boatManager = memberRegister.GetBoatManager(member);
                 var boats = boatManager.GetBoatList();
                 var boatCount = boats.Count;
-                //var boats = members[i].GetBoatList();
 
                 DisplayMemberListLine(i + 1, members[i].Id, members[i].Name, members[i].SocialSecurityNumber, boatCount);
 
@@ -124,7 +123,6 @@ namespace _1DV407Labb2.View
             if (memberRegister.IsLoggedIn)
             {
                 Console.WriteLine("║ 3: Add member                                                  ║");
-                Console.WriteLine("║ 4: Save                                                        ║");
             }
             else
             {
@@ -138,14 +136,14 @@ namespace _1DV407Labb2.View
 
         public void DisplayMember(Member member, ReadOnlyCollection<Boat> boats)
         {
-            //var boats = member.GetBoatList();
             Console.Clear();
             Console.WriteLine("╔════════════════════════════════════════════════════════════════╗");
             Console.WriteLine("║ █▓▒░             BOAT MEMBERSHIP - MEMBER                 ░▒▓█ ║");
             Console.WriteLine("╠════════════════════════════════════════════════════════════════╣");
-            Console.WriteLine("║ Name:       {0,15}                                    ║", member.Name);
-            Console.WriteLine("║ Member id:  {0,15}                                    ║", member.Id);
-            Console.WriteLine("║ Member ssn: {0,15}                                    ║", member.SocialSecurityNumber);
+            Console.WriteLine("║ Name:       {0,17}                                  ║", member.Name);
+            Console.WriteLine("║ Member id:  {0,17}                                  ║", member.Id);
+            Console.WriteLine("║ Member ssn: {0,17}                                  ║", member.SocialSecurityNumber);
+            Console.WriteLine("║ No. of boats: {0,15}                                  ║", boats.Count);
 
             if (boats.Count > 0)
             {
