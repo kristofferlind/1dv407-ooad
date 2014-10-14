@@ -4,5 +4,5 @@
 * Hannes Ljusås - hl222ih
 * Kristoffer Lind - kl222jy
 
-Genererade diagram->vs
-Manuellt skapade diagram->diagrams.md
+Genererated diagrams(fully detailed) -> Found in solution  
+Manually created diagrams(somewhat stripped) -> diagrams.md
