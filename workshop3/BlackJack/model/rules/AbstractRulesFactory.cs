@@ -5,7 +5,11 @@ using System.Text;
 
 namespace BlackJack.model.rules
 {
-    class AbstractRulesFactory
+    public class AbstractRulesFactory<T> where T : new()
     {
+        public T CreateObject()
+        {
+            return new T();
+        }
     }
 }

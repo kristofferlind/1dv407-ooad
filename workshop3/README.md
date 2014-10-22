@@ -7,3 +7,6 @@
  Source code found in folder `BlackJack`.
 
  Contact person `kl222jy@student.lnu.se`.
+
+
+ ![Class diagram](overview.png)
