@@ -49,6 +49,17 @@
     </Compile>
     <Compile Include="Model\Member.cs" />
     <Compile Include="Model\MemberRegister.cs" />
+    <Compile Include="Model\Search\AgeOverCriteria.cs" />
+    <Compile Include="Model\Search\AgeUnderCriteria.cs" />
+    <Compile Include="Model\Search\AndFilter.cs" />
+    <Compile Include="Model\Search\BirthMonthCriteria.cs" />
+    <Compile Include="Model\Search\ICriteria.cs" />
+    <Compile Include="Model\Search\IFilter.cs" />
+    <Compile Include="Model\Search\NameEndsWithCriteria.cs" />
+    <Compile Include="Model\Search\NameLikeCriteria.cs" />
+    <Compile Include="Model\Search\NameStartsWithCriteria.cs" />
+    <Compile Include="Model\Search\OrFilter.cs" />
+    <Compile Include="Model\Search\XorFilter.cs" />
     <Compile Include="Model\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +116,7 @@
       <DependentUpon>MemberController_HandleRemoveMember_1.sequencediagram</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

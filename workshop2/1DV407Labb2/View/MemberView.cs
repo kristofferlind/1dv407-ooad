@@ -64,10 +64,13 @@ namespace _1DV407Labb2.View
             Console.WriteLine();
         }
 
-        public void DisplayMemberList(bool showBoats)
+        public void DisplayMemberList(bool showBoats, ReadOnlyCollection<Member> members = null)
         {
             Console.Clear();
-            var members = memberRegister.GetMemberList();
+            if (members == null)
+            {
+                members = memberRegister.GetMemberList();
+            }
 
             DisplayMemberListHeader();
 

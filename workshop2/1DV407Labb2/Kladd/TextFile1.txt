@@ -1,0 +1,103 @@
+﻿
+Member menu -> manage boats - back to member menu - back to main manu: -> hamnar på boats igen
+Navigationen paj -> fixa loopar.
+
+edit boat -> return to previous (formulering!) menu funkar ej.
+
+FIXED = det är fixat
+STARTED = det är påbörjat
+METHOD = metoden finns, inte ihopkopplat med användarens gränssnitt
+N/A = not applicable
+
+GRADE 3: DONE!
+
+BUGS: 
+1. Remove boat, unhandled error. Reproduce: add boat, manage boat, remove boat, y > KRASCH! < - LÖST?
+2. add boat->removeboat->displayboat fails (check for hasboat) - LÖST?
+4. om member har flera båtar->tar bort en, så visas nästa båt
+
+Funderingar (kristoffer)
+1. GetMemberInfo anropas överallt eftersom vi skickar runt memberId istället för member
+2. crud av boats via memberregister
+skicka runt member istället, GetMember publik och användas istället för GetMemberInfo, då kan dessutom all båthantering försvinna från memberregister
+hur ligger det egentligen till med inkapsling vs information expert
+jag tänker mig att det borde vara ok att släppa ut member, men inte list<member>
+private set på variabler i member skulle räcka för inkapsling av member?
+memberview är galet stor
+	generella inmatningsmetoder och liknande->BaseView
+	medlemshantering -> MemberView
+	båthantering-> BoatView
+membercontroller är också rejält tung, blir lite knepigt att bryta upp dock eftersom menyer och så finns där?
+	initieringen av menyer och så borde kanske vara på view? och bara returnera objekt eller skapa objekt som kan hämtas?	
+	skapas objekt i view kan validering skötas av objektet, validationexceptions, en validate metod i view som returnerar bool
+	objekt eller felmeddelande kan då hämtas av controller
+
+specifikt diagram:
+	kanske bara visa publika metoder? SaveMembers och GetNewMemberId anropas på väldigt många platser, är detta intressant?
+
+GRADE 3: DONE!
+FIXED Strict Model-View separation 
+FIXED Classes have high cohesion and are not too large or have too much responsibility.
+FIXED Classes have low coupling and are not too connected to other entities.
+FIXED Avoid the use of static variables or operations as well as global variables.
+FIXED Avoid hidden dependencies.
+FIXED Informations should be encapsulated.
+FIXED Use a natural design, the domain model should inspire the design.
+FIXED Good quality of code (for example naming, standards, duplication)
+FIXED Boats should have a type (Sailboat, Motorsailer, kayak/Canoe, Other) and a length.
+FIXED The model should not depend on the view or user interface in any way (direct or indirect) the user interface (view) should not implement domain functionality)
+FIXED Create a new member with a name, personal number, a unique member id should be created and assigned to the new member.
+FIXED Display “Compact List”; name, member id and number of boats
+FIXED Display “Verbose List”; name, personal number, member id and boats with boat information
+FIXED Delete a member
+FIXED Change a member’s information
+FIXED Look at a specific member’s information
+FIXED Register a new boat for a member
+FIXED Delete a boat
+FIXED Change a boat’s information
+FIXED Persistence (the registry should be saved and loaded for example from a text file.)
+FIXED Objects are connected using associations and not with keys/ids.
+FIXED Simple error handling. The application should not crash but it does not need to be user friendly.
+
+
+//You should have the following in your portflio and all parts should match.
+A well tested runable version of the application. For example an .exe or .java files, link to webbsite etc. If it is not easy to run the application you must include instructions on how to run it.
+The source code of the application, with possible instructions on how to compile it, external dependencies etc.
+A classdiagram for the entire application
+Sequence diagrams that covers the requirements (probably easiest to do one diagram per requirement)
+Present your work (briefly, focus on interesting/problematic points) at the end of the workshop and submit your work before the deadline for peer review.
+Some tips on tools to create diagrams are yuml.me and websequencediagrams.com that seem to cover the needs we have and are quite agile. Some versions of Visual Studio has a number of tools for diagrams.
+
+
+
+
+
+
+
+//Requirements for grade 4
+
+Perform the requirments for grade 3
+Exapand the design and implementation to include:
+Simple authentication; a user must be logged in to create, change and delete information (members and boats). Not logged in users should be able to see information (list, see details and search (see below).
+A simple selection/search of members. That is a subset of the member should be listed, for example members with a name that starts witn “ni”, members who are older than a certain age, born a certain month, has a certain type of boat etc. A design pattern should be used to solve the problem and it should be easy to add new types of critera, that is the design should show how new critera can be added and what needs to be changed. You do not need to implement all the above examples.
+Hand in the assignment before the deadline.
+Requirements for grade 5
+
+// Perform the requirments for grade 3
+// Perform the requirments for grade 4
+Exapand the design and implementation to include:
+Datavalidation and errorhandling with user friendly error messages. The solution should avoid code duplication and be as flexible as possible.
+Complex selection/search of members. The model should be able to perform arbitrarily complex/nested selections of the type: “members who are born a certain month or has a name that starts with “ni” and are older than a certain age”. That is (month==Jan || (name=”ni*” && age > 18). A design pattern should be used it is enough to show flexibility on the model-side, that is you do not need to implement a view (user interface) for this. A few “hard coded” examples on searches are good enough.
+Hand in the assignment before the deadline.
+
+
+
+//main
+compactlist
+verboselist
+addMember
+
+
+
+anton+
+hannes+

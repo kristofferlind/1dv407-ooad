@@ -32,7 +32,7 @@ namespace _1DV407Labb2.Controller
             {
                 memberView.DisplayMenu();
 
-                input = memberView.GetIntegerInput(3, "Make your selection");
+                input = memberView.GetIntegerInput(4, "Make your selection");
 
 
                 switch (input)
@@ -53,11 +53,22 @@ namespace _1DV407Labb2.Controller
                             HandleAuthentication();
                         }
                         break;
+                    case 4:
+                        HandleSearch();
+                        break;
                     default:
                         break;
                 }
             } while (input != 0);
          }
+
+        private void HandleSearch()
+        {
+            var members = memberRegister.FilterMembers("(månad == Jan || (namn == “ni*” && ålder > 18)");
+            memberView.DisplayMemberList(true, members);
+            ContinueOnKeyPressed();
+            //HandleMemberList(true);
+        }
 
         private void HandleAuthentication()
         {
