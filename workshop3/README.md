@@ -1,7 +1,7 @@
 #ws3 
-> Anton K Andersson - aa223ap  
- Hannes Ljusås - hl222ih  
- Kristoffer Lind - kl222jy  
+ Anton K Andersson - aa223ap - betygsnivå 3  
+ Hannes Ljusås - hl222ih - betygsnivå 3,4,5?  
+ Kristoffer Lind - kl222jy - betygsnivå 3,4,5?  
 
  Full class diagram found in `Overview.cd`. 
  Source code found in folder `BlackJack`.

@@ -15,6 +15,13 @@ namespace BlackJack.view
             System.Console.WriteLine("Hello Black Jack World");
             System.Console.WriteLine("Type 'p' to Play, 'h' to Hit, 's' to Stand or 'q' to Quit\n");
         }
+        public void DisplayRules(string hitRule, string newGameRule, string winRule)
+        {
+            Console.WriteLine("Rules in use:");
+            Console.WriteLine("\t" + hitRule);
+            Console.WriteLine("\t" + newGameRule);
+            Console.WriteLine("\t" + winRule);
+        }
 
         public Action GetInput()
         {

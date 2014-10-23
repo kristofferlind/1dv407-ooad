@@ -5,24 +5,31 @@ using System.Text;
 
 namespace BlackJack.model.rules
 {
-    class RulesFactory
+    class RulesFactory : AcceptVisitor
     {
+        private AbstractRulesFactory ruleSet;
+        public RulesFactory(AbstractRulesFactory rules)
+        {
+            ruleSet = rules;
+        }
         public IHitStrategy GetHitRule()
         {
-            return new Soft17HitStrategy();
-            //return new BasicHitStrategy();
+            return ruleSet.GetHitRuleFactory().GetHitRule();
         }
 
         public INewGameStrategy GetNewGameRule()
         {
-            return new AmericanNewGameStrategy();
-            //return new InternationalNewGameStrategy();
+            return ruleSet.GetNewGameStrategyFactory().GetNewGameRule();
         }
 
         public IWinStrategy GetWinRule()
         {
-            //return new DealerWinStrategy();
-            return new PlayerWinStrategy();
+            return ruleSet.GetWinRuleFactory().GetWinRule();
+        }
+
+        public void Accept(Visitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

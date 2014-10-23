@@ -2,20 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BlackJack.model.rules;
 
 namespace BlackJack.model
 {
     class Game
     {
-        private model.Dealer m_dealer;
-        private model.Player m_player;
+        private Dealer m_dealer;
+        private Player m_player;
+        private RulesFactory rules;
+        private VisitorGetRules fetchedRules;
+
         public Game()
         {
-            m_dealer = new Dealer(new rules.RulesFactory());
+            //AbstractRulesFactory ruleSet = new EasyRulesFactory();
+            model.rules.AbstractRulesFactory ruleSet = new model.rules.HardRulesFactory();
+            rules = new RulesFactory(ruleSet);
+            m_dealer = new Dealer(rules);
+            //m_dealer = new Dealer(new rules.RulesFactory(ruleSet));
             m_player = new Player();
-
+            PrepareGetRules();
         }
 
+        private void PrepareGetRules()
+        {
+            fetchedRules = new VisitorGetRules();
+            rules.Accept(fetchedRules);
+        }
+
+        public string GetHitRule()
+        {
+            return fetchedRules.HitRuleName;
+        }
+
+        public string GetNewGameRule()
+        {
+            return fetchedRules.NewGameRuleName;
+        }
+        
+        public string GetWinRule() 
+        {
+            return fetchedRules.WinRuleName;
+        }
+
+            
         public void Subscribe(CardDealtListener a_subscriber)
         {
             m_player.Subscribe(a_subscriber);

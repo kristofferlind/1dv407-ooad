@@ -16,6 +16,15 @@ namespace BlackJack.view
             System.Console.WriteLine("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
         }
 
+        public void DisplayRules(string hitRule, string newGameRule, string winRule)
+        {
+            Console.WriteLine("Rules in use:");
+            Console.WriteLine("\t" + hitRule);
+            Console.WriteLine("\t" + newGameRule);
+            Console.WriteLine("\t" + winRule);
+            Console.WriteLine();
+        }
+
         public Action GetInput()
         {
             Action action;
@@ -24,7 +33,7 @@ namespace BlackJack.view
             do
             {
                 c = Console.ReadLine();
-                isValid = Regex.IsMatch(c, @"[p|h|s|q]");
+                isValid = Regex.IsMatch(c, @"^[phsq]$");
             } while (!isValid);
 
             switch (c)
