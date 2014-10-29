@@ -19,7 +19,6 @@ namespace BlackJack.model
             model.rules.AbstractRulesFactory ruleSet = new model.rules.HardRulesFactory();
             rules = new RulesFactory(ruleSet);
             m_dealer = new Dealer(rules);
-            //m_dealer = new Dealer(new rules.RulesFactory(ruleSet));
             m_player = new Player();
             PrepareGetRules();
         }

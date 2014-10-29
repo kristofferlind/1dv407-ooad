@@ -150,7 +150,7 @@ namespace BlackJackWeb
 
         public void CardDealt(Card card, Player player)
         {
-            Thread.Sleep(750);
+            Thread.Sleep(450);
             if (UserSession.Connection != null)
             {
                 GlobalHost.ConnectionManager.GetHubContext<CardDealtHub>().Clients.Client(UserSession.Connection).sendMessage(card.GetColor(), card.GetValue(), player.ToString(), player.CalcScore());

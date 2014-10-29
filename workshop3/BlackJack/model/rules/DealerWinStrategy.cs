@@ -10,9 +10,6 @@ namespace BlackJack.model.rules
         private int maxScore = 21;
         public bool isDealerWinner(int playerScore, int dealerScore)
         {
-            ////Check, dealer always wins
-            //return true;      //funkade
-
             //player tjock?
             if (playerScore > maxScore)
             {

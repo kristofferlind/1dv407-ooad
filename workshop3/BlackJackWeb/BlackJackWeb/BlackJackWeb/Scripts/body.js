@@ -67,9 +67,10 @@
         var playerList = document.querySelector("#" + player);
         playerList.appendChild(listItem);
         var card = listItem.firstChild.firstChild;
-        setTimeout(function () {
-            card.classList.remove("flipped");
-        }, 100);
+        //setTimeout(function () {
+        //    card.classList.remove("flipped");
+        //}, 100);
+        card.classList.remove("flipped");
     }
 
     var buildListItem = function (color, value) {

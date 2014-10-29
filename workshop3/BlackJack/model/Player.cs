@@ -10,7 +10,6 @@ namespace BlackJack.model
         private List<CardDealtListener> m_subscribers = new List<CardDealtListener>();
 
         private List<Card> m_hand = new List<Card>();
-        //private Hand m_hand = new Hand();
 
         public void Subscribe(CardDealtListener a_subscriber)
         {
@@ -24,13 +23,11 @@ namespace BlackJack.model
             {
                 subscriber.CardDealt(a_card, this);
             }
-            //m_hand.add()?
             m_hand.Add(a_card);
         }
 
         public IEnumerable<Card> GetHand()
         {
-            //return Hand m_hand
             return m_hand.Cast<Card>();
         }
 
@@ -41,7 +38,6 @@ namespace BlackJack.model
 
         public void ShowHand()
         {
-            //hand.show?
             foreach (Card c in GetHand())
             {
                 c.Show(true);
@@ -50,7 +46,6 @@ namespace BlackJack.model
 
         public int CalcScore()
         {
-            //hand.calculate?
             int[] cardScores = new int[(int)model.Card.Value.Count]
                 {2, 3, 4, 5, 6, 7, 8, 9, 10, 10 ,10 ,10, 11};
             int score = 0;
