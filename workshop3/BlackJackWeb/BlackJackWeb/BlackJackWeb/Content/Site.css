@@ -29,6 +29,43 @@ ul.cards li {
     padding-left: 5px;
 }
 
+ul.cards li img {
+}
+
+.deckCard {
+    position: relative;
+    margin-bottom: -44px;
+}
+
+.deckCard, .front, .back {
+    width: 71px;
+    height: 96px;
+    display: inline-block;
+}
+
+.front, .back {
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+}
+
+.front {
+    transition-delay: 0.4s;
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(90deg);
+}
+
+.flipped .back {
+    transform: rotateY(0deg);
+}
+
+.flipped .front {
+    transform: rotateY(90deg);
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

@@ -6,19 +6,39 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BlackJack.model;
 using Microsoft.AspNet.SignalR;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlackJackWeb
 {
+    public static class UserSession
+    {
+        private static string connection;
+        public static string Connection
+        {
+            get
+            {
+                return connection;
+            }
+            set
+            {
+                connection = value;
+            }
+        }
+
+    }
+
     public class CardDealtHub : Hub
     {
         static CardDealtHub()
         {
-            
         }
 
-        public string Activate()
+        public override Task OnConnected()
         {
-            return "test";
+            UserSession.Connection = Context.ConnectionId;
+
+            return base.OnConnected();
         }
     }
 
@@ -130,8 +150,11 @@ namespace BlackJackWeb
 
         public void CardDealt(Card card, Player player)
         {
-            System.Threading.Thread.Sleep(1500);
-            GlobalHost.ConnectionManager.GetHubContext<CardDealtHub>().Clients.All.sendMessage(card.GetColor(), card.GetValue(), player.ToString());
+            Thread.Sleep(750);
+            if (UserSession.Connection != null)
+            {
+                GlobalHost.ConnectionManager.GetHubContext<CardDealtHub>().Clients.Client(UserSession.Connection).sendMessage(card.GetColor(), card.GetValue(), player.ToString(), player.CalcScore());
+            }
         }
     }
 }

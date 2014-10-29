@@ -15,8 +15,8 @@ namespace BlackJack.model
 
         public Game()
         {
-            //AbstractRulesFactory ruleSet = new EasyRulesFactory();
-            model.rules.AbstractRulesFactory ruleSet = new model.rules.HardRulesFactory();
+            AbstractRulesFactory ruleSet = new EasyRulesFactory();
+            //model.rules.AbstractRulesFactory ruleSet = new model.rules.HardRulesFactory();
             rules = new RulesFactory(ruleSet);
             m_dealer = new Dealer(rules);
             //m_dealer = new Dealer(new rules.RulesFactory(ruleSet));

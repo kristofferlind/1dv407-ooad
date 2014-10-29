@@ -23,9 +23,7 @@
                         </ul>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <%-- med bild: --%>
                         <li><img src="img/deck/<%#: Item.GetColor() %>/<%#: Item.GetValue() %>.png" /></li>
-                        <%--<li><%#: Item.GetColor()%> <%#: Item.GetValue() %></li>--%>
                     </ItemTemplate>
                 </asp:ListView>
                 <br />
@@ -47,43 +45,14 @@
                         </ul>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <%-- med bild: --%>
                         <li><img src="img/deck/<%#: Item.GetColor() %>/<%#: Item.GetValue() %>.png" /></li>
-
-                        <%--<li><%#: Item.GetColor()%> <%#: Item.GetValue() %></li>--%>
                     </ItemTemplate>
                 </asp:ListView>
                 <br />
                 Score: <span class="DealerScore"><asp:Literal ID="DealerScore" runat="server"></asp:Literal></span>
             </div>
         </div>
-
-            
-            
-                <br />
-                <h4><asp:Literal ID="WinnerLiteral" runat="server"></asp:Literal></h4>
-
-
-
-        <h3>TEST</h3>
-        <asp:UpdatePanel ID="DealerHandUpdatePanel" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <asp:ListView ID="ListView1" ItemType="BlackJack.model.Card" runat="server">
-                    <LayoutTemplate>
-                        <ul>
-                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
-                        </ul>
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <li><%#: Item.GetColor()%> <%#: Item.GetValue() %></li>
-                    </ItemTemplate>
-                </asp:ListView>
-            </ContentTemplate>
-<%--                <Triggers>
-                <asp:AsyncPostBackTrigger EventName="CardDealt" ControlID="DealerHandListView" />
-            </Triggers>--%>
-        </asp:UpdatePanel>
-
-
+        <br />
+        <h4><asp:Literal ID="WinnerLiteral" runat="server"></asp:Literal></h4>
     </asp:Panel>
 </asp:Content>
