@@ -8,6 +8,7 @@ using BlackJack.model;
 using Microsoft.AspNet.SignalR;
 using System.Threading;
 using System.Threading.Tasks;
+using BlackJack.model.rules;
 
 namespace BlackJackWeb
 {
@@ -45,6 +46,7 @@ namespace BlackJackWeb
     public partial class _Default : Page, CardDealtListener
     {
         private Game game;
+        private AbstractRulesFactory ruleSet;
 
         private void save()
         {
@@ -54,7 +56,7 @@ namespace BlackJackWeb
         private void reset()
         {
             HttpContext.Current.Session["Game"] = null;
-            game = new Game();
+            game = new Game(ruleSet);
             save();
         }
 
@@ -68,10 +70,14 @@ namespace BlackJackWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ruleSet = new EasyRulesFactory();
+            //ruleSet = new model.rules.HardRulesFactory();
+
+
             game = HttpContext.Current.Session["Game"] as Game;
             if (game == null)
             {
-                game = new Game();
+                game = new Game(ruleSet);
                 HttpContext.Current.Session["Game"] = game;
             }
             else
@@ -150,7 +156,7 @@ namespace BlackJackWeb
 
         public void CardDealt(Card card, Player player)
         {
-            Thread.Sleep(450);
+            Thread.Sleep(550);
             if (UserSession.Connection != null)
             {
                 GlobalHost.ConnectionManager.GetHubContext<CardDealtHub>().Clients.Client(UserSession.Connection).sendMessage(card.GetColor(), card.GetValue(), player.ToString(), player.CalcScore());

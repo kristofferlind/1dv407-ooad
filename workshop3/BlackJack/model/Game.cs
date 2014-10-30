@@ -13,10 +13,8 @@ namespace BlackJack.model
         private RulesFactory rules;
         private VisitorGetRules fetchedRules;
 
-        public Game()
+        public Game(AbstractRulesFactory ruleSet)
         {
-            //AbstractRulesFactory ruleSet = new EasyRulesFactory();
-            model.rules.AbstractRulesFactory ruleSet = new model.rules.HardRulesFactory();
             rules = new RulesFactory(ruleSet);
             m_dealer = new Dealer(rules);
             m_player = new Player();
